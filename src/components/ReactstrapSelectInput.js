@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {FormFeedback, FormGroup, Input, Label} from "reactstrap";
+import { getIn } from 'formik';
 
 /*let handleBlur = event => {
     if (this.ignoreNextBlur === true) {
@@ -17,13 +18,13 @@ const ReactstrapSelectInput = ({
                                    disabled = false,
                                    ...props
                                }) => {
-    let error = errors[field.name];
-    let touch = touched[field.name];
+    let error = getIn(errors, field.name);
+    let touch = getIn(touched, field.name);
     return (
         <FormGroup>
             <Label for={props.inputprops.id} className={"label-color"}>{props.label}</Label>
             <Input id={props.inputprops.id} {...field} {...props} type="select"
-                   invalid={Boolean(touched[field.name] && errors[field.name])}
+                   invalid={Boolean(getIn(touched, field.name) && getIn(errors, field.name))}
                    placeholder="Test">
                 <option value="">{props.inputprops.defaultOption}</option>
                 {props.inputprops.options.map((option, index) => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import {FormFeedback, FormGroup, Input, Label} from "reactstrap";
+import { getIn } from 'formik';
 
 const ReactstrapFormikInput = (
     {
@@ -9,8 +10,8 @@ const ReactstrapFormikInput = (
     }) => (
     <FormGroup>
         <Label for={props.id} className={"label-color"}>{props.label}</Label>
-        <Input {...props} {...fields} invalid={Boolean(touched[fields.name] && errors[fields.name])}/>
-        {touched[fields.name] && errors[fields.name] ? <FormFeedback>{errors[fields.name]}</FormFeedback> : ''}
+        <Input {...props} {...fields} invalid={Boolean(getIn(touched, fields.name) && getIn(errors, fields.name))}/>
+        {getIn(touched, fields.name) && getIn(errors, fields.name) ? <FormFeedback>{getIn(errors, fields.name)}</FormFeedback> : ''}
     </FormGroup>
 );
 export default ReactstrapFormikInput;

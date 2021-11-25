@@ -2,6 +2,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import * as React from 'react';
 import { FormGroup, Input, Label } from "reactstrap";
+import { getIn } from 'formik';
 
 var ReactstrapRadioInput = function ReactstrapRadioInput(_ref) {
     var field = _ref.field,
@@ -21,7 +22,7 @@ var ReactstrapRadioInput = function ReactstrapRadioInput(_ref) {
         React.createElement(
             Label,
             { "for": props.id },
-            React.createElement(Input, Object.assign({}, props, { type: "radio", name: field.name, checked: values[field.name] === field.value, value: field.value,
+            React.createElement(Input, Object.assign({}, props, { type: "radio", name: field.name, checked: getIn(values, field.name) === field.value, value: field.value,
                 onChange: function onChange(event, value) {
                     return setFieldValue(field.name, field.value);
                 } })),
