@@ -2,6 +2,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import * as React from 'react';
 import { FormFeedback, FormGroup, Input, Label } from "reactstrap";
+import { getIn } from 'formik';
 
 /*let handleBlur = event => {
     if (this.ignoreNextBlur === true) {
@@ -23,8 +24,8 @@ var ReactstrapSelectInput = function ReactstrapSelectInput(_ref) {
         disabled = _ref$disabled === undefined ? false : _ref$disabled,
         props = _objectWithoutProperties(_ref, ["field", "form", "disabled"]);
 
-    var error = errors[field.name];
-    var touch = touched[field.name];
+    var error = getIn(errors, field.name);
+    var touch = getIn(touched, field.name);
     return React.createElement(
         FormGroup,
         null,
@@ -36,7 +37,7 @@ var ReactstrapSelectInput = function ReactstrapSelectInput(_ref) {
         React.createElement(
             Input,
             Object.assign({ id: props.inputprops.id }, field, props, { type: "select",
-                invalid: Boolean(touched[field.name] && errors[field.name]),
+                invalid: Boolean(getIn(touched, field.name) && getIn(errors, field.name)),
                 placeholder: "Test" }),
             React.createElement(
                 "option",

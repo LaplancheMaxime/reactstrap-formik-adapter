@@ -2,6 +2,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import React from 'react';
 import { FormFeedback, FormGroup, Input, Label } from "reactstrap";
+import { getIn } from 'formik';
 
 var ReactstarpFormikInput = function ReactstarpFormikInput(_ref) {
     var fields = _objectWithoutProperties(_ref.field, []),
@@ -19,11 +20,11 @@ var ReactstarpFormikInput = function ReactstarpFormikInput(_ref) {
             { "for": props.id, className: "label-color" },
             props.label
         ),
-        React.createElement(Input, Object.assign({}, props, fields, { invalid: Boolean(touched[fields.name] && errors[fields.name]) })),
-        touched[fields.name] && errors[fields.name] ? React.createElement(
+        React.createElement(Input, Object.assign({}, props, fields, { invalid: Boolean(getIn(touched, fields.name) && getIn(errors, fields.name)) })),
+        getIn(touched, fields.name) && getIn(errors, fields.name) ? React.createElement(
             FormFeedback,
             null,
-            errors[fields.name]
+            getIn(errors, fields.name)
         ) : ''
     );
 };

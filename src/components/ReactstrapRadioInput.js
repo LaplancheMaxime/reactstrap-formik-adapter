@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {FormGroup, Input, Label} from "reactstrap";
+import { getIn } from 'formik';
 
 const ReactstrapRadioInput = ({
                                   field,
@@ -10,7 +11,7 @@ const ReactstrapRadioInput = ({
     return (
         <FormGroup check inline>
             <Label for={props.id}>
-                <Input {...props} type="radio" name={field.name} checked={values[field.name] === field.value} value={field.value}
+                <Input {...props} type="radio" name={field.name} checked={getIn(values, field.name) === field.value} value={field.value}
                        onChange={(event, value) => setFieldValue(field.name, field.value)}/>{props.label}
             </Label>
         </FormGroup>
