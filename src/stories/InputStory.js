@@ -1,3 +1,5 @@
+/* eslint-disable react/display-name */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import {Field, Form, Formik} from 'formik';
 import TextField from '../components/ReactstrapFormikInput';

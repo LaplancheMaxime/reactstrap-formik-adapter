@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable react/display-name */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
