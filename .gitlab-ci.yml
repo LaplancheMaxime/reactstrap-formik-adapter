@@ -14,9 +14,11 @@ cache:
 build:
   image: node:alpine
   stage: build
-  script:
+  before_script:
     - npm ci
     - npm run lint
+  script:
+    - npm run build
 
 sonarcloud-check:
   stage: quality_gate
@@ -41,8 +43,8 @@ publish:package:gitlab:
   stage: deploy
   before_script:
     - npm --version
-    - npm config set @mlaplanche:registry=https://gitlab.example.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/
-    - npm config set -- '//gitlab.example.com/api/v4/packages/npm/:_authToken' "${CI_JOB_TOKEN}"
+    - npm config set @mlaplanche:registry=https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/
+    - npm config set -- '//gitlab.com/api/v4/packages/npm/:_authToken' "${CI_JOB_TOKEN}"
   script:
     - npm publish
 
