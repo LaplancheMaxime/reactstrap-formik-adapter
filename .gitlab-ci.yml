@@ -44,7 +44,7 @@ sonarcloud-check:
     - master
 
 publish:package:gitlab:
-  image: node:alpine
+  image: node:latest
   stage: deploy
   before_script:
     - npm --version
