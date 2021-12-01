@@ -44,16 +44,15 @@ sonarcloud-check:
     - master
 
 publish:package:gitlab:
-  image: node:12
+  image: node:latest
   stage: deploy
   before_script:
     - npm --version
     - |
       {
-        echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
-        echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=\${CI_JOB_TOKEN}"
+        echo "//registry.npmjs.org:_authToken=\${NPM_TOKEN}"
       } | tee --append .npmrc
   script:
-    - npm publish
+    - npm publish --verbose
 
 
