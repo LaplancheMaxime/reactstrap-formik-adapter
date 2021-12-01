@@ -35,3 +35,15 @@ sonarcloud-check:
   only:
     - merge_requests
     - master
+
+publish:package:gitlab:
+  image: node:alpine
+  stage: deploy
+  before_script:
+    - npm --version
+    - npm config set @mlaplanche:registry=https://gitlab.example.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/
+    - npm config set -- '//gitlab.example.com/api/v4/packages/npm/:_authToken' "${CI_JOB_TOKEN}"
+  script:
+    - npm publish
+
+
