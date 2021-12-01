@@ -50,7 +50,7 @@ publish:package:gitlab:
     - npm --version
     - |
       {
-        echo "//registry.npmjs.org:_authToken=\${NPM_TOKEN}"
+        echo "//registry.npmjs.org:_authToken ${NPM_TOKEN}"
       } | tee --append .npmrc
   script:
     - npm publish --verbose
