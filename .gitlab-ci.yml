@@ -48,7 +48,8 @@ publish:package:gitlab:
   stage: deploy
   before_script:
     - npm --version
-    - echo "//registry.npmjs.org/:_authToken ${NPM_TOKEN}" >.npmrc
+    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >.npmrc
+    - cat .npmrc
   script:
     - npm publish --verbose --access public
 
