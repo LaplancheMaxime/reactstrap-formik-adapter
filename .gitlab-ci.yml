@@ -20,7 +20,7 @@ build:
     paths:
       - "dist/"
   before_script:
-    - npm ci
+    - npm ci --cache .npm
     - npm run lint
   script:
     - npm run build
@@ -48,7 +48,11 @@ publish:package:gitlab:
   stage: deploy
   before_script:
     - npm --version
-    - echo "//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
+    - |
+      {
+        echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
+        echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=\${CI_JOB_TOKEN}"
+      } | tee --append .npmrc
   script:
     - npm publish
 
