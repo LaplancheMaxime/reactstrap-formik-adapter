@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel src/components --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
+    "build": "NODE_ENV=production babel src/components --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint-init": "eslint --init",
