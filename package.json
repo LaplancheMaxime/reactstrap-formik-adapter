@@ -41,7 +41,7 @@
     "build-storybook": "build-storybook -c .storybook -o .out",
     "deploy-storybook": "storybook-to-ghpages"
   },
-  "author": "LAPLANCHE Maxime <laplanche.maxime@outlook.com",
+  "author": "LAPLANCHE Maxime <laplanche.maxime@outlook.fr",
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/mlaplanche/reactstrap-formik"
