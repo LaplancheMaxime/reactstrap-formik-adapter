@@ -14,6 +14,11 @@ cache:
 build:
   image: node:alpine
   stage: build
+  artifacts:
+    untracked: false
+    expire_in: 30 days
+    paths:
+      - "dist/"
   before_script:
     - npm ci
     - npm run lint
