@@ -49,11 +49,12 @@ prepare:release:tag:
   image: node:latest
   stage: prepare
   script: 
-    - echo 'VERSION=$(node -p "require('./package.json').version")' >> prepare_tag.env
+    - export TAG=$(node -p "require('./package.json').version")
+    - echo 'VERSION=${TAG}' >> prepare_tag.env
     - cat prepare_tag.env 
   artifacts:
     reports:
-      dotenv: variables.env     
+      dotenv: prepare_tag.env     
 
 release:tag:
   image: registry.gitlab.com/gitlab-org/release-cli:latest
@@ -61,6 +62,7 @@ release:tag:
   needs:
     - job: prepare:release:tag
       artifacts: true
+    - job: build
   script:
     - echo 'running release:tag FOR ${VERSION}'
   release:
