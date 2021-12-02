@@ -2,6 +2,7 @@ stages:          # List of stages for jobs, and their order of execution
   - build
   - test
   - quality_gate
+  - tag
   - deploy
 
 # Cache modules in between jobs
@@ -43,6 +44,20 @@ sonarcloud-check:
     - merge_requests
     - master
 
+release:tag:
+  image: node:latest
+  stage: tag
+  script: 
+    - export VERSION=$(node -p "require('./package.json').version")
+    - echo $VERSION
+    - |
+     curl --request POST \
+     --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+     --header "Content-Type: application/json" \
+     --data "{\"tag_name\": \"${VERSION}\", \"description\": \" \"}" \
+      $CI_API_V4_URL/projects/$CI_PROJECT_ID/releases
+
+
 publish:package:gitlab:
   image: node:12
   stage: deploy
@@ -52,5 +67,5 @@ publish:package:gitlab:
     - cat .npmrc
   script:
     - npm publish --verbose --access public
-
-
+  only:
+    - tags
