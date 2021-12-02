@@ -51,7 +51,7 @@ prepare:release:tag:
   script: 
     - TAG=$(node -p "require('./package.json').version")
     - echo $TAG
-    - echo 'VERSION=$TAG' >> prepare_tag.env
+    - echo 'VERSION=$TAG' > prepare_tag.env
     - cat prepare_tag.env 
   artifacts:
     reports:
