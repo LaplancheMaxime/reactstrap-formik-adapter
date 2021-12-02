@@ -49,8 +49,9 @@ prepare:release:tag:
   image: node:latest
   stage: prepare
   script: 
-    - export TAG=$(node -p "require('./package.json').version")
-    - echo 'VERSION=${TAG}' >> prepare_tag.env
+    - TAG=$(node -p "require('./package.json').version")
+    - echo $TAG
+    - echo 'VERSION=$TAG' >> prepare_tag.env
     - cat prepare_tag.env 
   artifacts:
     reports:
