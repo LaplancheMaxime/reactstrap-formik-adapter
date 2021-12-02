@@ -54,7 +54,9 @@ prepare:release:tag:
     - cat prepare_tag.env 
   artifacts:
     reports:
-      dotenv: prepare_tag.env     
+      dotenv: prepare_tag.env
+  only:
+    - master
 
 release:tag:
   image: registry.gitlab.com/gitlab-org/release-cli:latest
@@ -69,7 +71,8 @@ release:tag:
     tag_name: ${VERSION}
     ref: ${CI_COMMIT_SHORT_SHA}
     description: 'Readme.md'
-
+  only:
+    - master
 
 publish:package:gitlab:
   image: node:12
