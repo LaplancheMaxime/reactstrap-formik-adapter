@@ -50,12 +50,16 @@ release:tag:
   script: 
     - export VERSION=$(node -p "require('./package.json').version")
     - echo $VERSION
-    - |
-     curl --request POST \
-     --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
-     --header "Content-Type: application/json" \
-     --data "{\"tag_name\": \"${VERSION}\", \"description\": \" \", \"ref\": \"${VERSION}\"}" \
-      $CI_API_V4_URL/projects/$CI_PROJECT_ID/releases
+    # - |
+    #  curl --request POST \
+    #  --header 'JOB-TOKEN: ${CI_JOB_TOKEN}' \
+    #  --header 'Content-Type: application/json' \
+    #  --data '{"tag_name": "${VERSION}", "description":"", "ref": "${VERSION}"}' \
+    #   $CI_API_V4_URL/projects/$CI_PROJECT_ID/releases
+  release:
+    tag_name: ${VERSION}
+    ref: ${CI_COMMIT_SHORT_SHA}
+    description: 'Readme.md'
 
 
 publish:package:gitlab:
