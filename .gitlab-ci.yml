@@ -54,7 +54,7 @@ prepare:release:tag:
     - echo $TAG
     - echo $TAG_VERSION 
     - echo "VERSION=${TAG}" > prepare_tag.env
-    - echo "${TAG_VERSION}" > prepare_tag.env
+    - echo "${TAG_VERSION}" >> prepare_tag.env
     - cat prepare_tag.env 
   artifacts:
     reports:
