@@ -1,4 +1,5 @@
-stages:          # List of stages for jobs, and their order of execution
+stages: # List of stages for jobs, and their order of execution
+  - prepare          
   - build
   - test
   - quality_gate
@@ -44,18 +45,24 @@ sonarcloud-check:
     - merge_requests
     - master
 
-release:tag:
+prepare:release:tag:
   image: node:latest
-  stage: tag
+  stage: prepare
   script: 
-    - export VERSION=$(node -p "require('./package.json').version")
-    - echo $VERSION
-    # - |
-    #  curl --request POST \
-    #  --header 'JOB-TOKEN: ${CI_JOB_TOKEN}' \
-    #  --header 'Content-Type: application/json' \
-    #  --data '{"tag_name": "${VERSION}", "description":"", "ref": "${VERSION}"}' \
-    #   $CI_API_V4_URL/projects/$CI_PROJECT_ID/releases
+    - echo 'VERSION=$(node -p "require('./package.json').version")' >> prepare_tag.env
+    - cat prepare_tag.env 
+  artifacts:
+    reports:
+      dotenv: variables.env     
+
+release:tag:
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  stage: tag
+  needs:
+    - job: prepare:release:tag
+      artifacts: true
+  script:
+    - echo 'running release:tag FOR ${VERSION}'
   release:
     tag_name: ${VERSION}
     ref: ${CI_COMMIT_SHORT_SHA}
