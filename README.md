@@ -22,4 +22,4 @@ Fork of [reactstrap-formik](https://github.com/shoaibkhan94/reactstrap-formik) b
     npm install
     npm run storybook
 
-[Demo](https://shoaibkhan94.github.io/reactstrap-formik)
+[Demo](https://laplanchemaxime.github.io/reactstrap-formik-adapter/)

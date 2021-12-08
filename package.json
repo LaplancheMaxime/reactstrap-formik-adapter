@@ -8,20 +8,13 @@
     "reactstrap": "^9.0.1"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.4.12",
-    "@storybook/addon-links": "^3.4.12",
-    "@storybook/addons": "^3.4.12",
-    "@storybook/react": "^3.4.12",
-    "@storybook/storybook-deployer": "^2.8.10",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-runtime": "^6.26.0",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.2.0",
     "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-storybook": "^0.5.3",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "1.1.5"
@@ -32,14 +25,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel src/components --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint-init": "eslint --init",
-    "lint": "eslint src/**/*.js",
-    "storybook": "start-storybook -p 9009 -s .out",
-    "build-storybook": "build-storybook -c .storybook -o .out",
-    "deploy-storybook": "storybook-to-ghpages"
+    "lint": "eslint src/**/*.js"
   },
   "author": "LAPLANCHE Maxime <laplanche.maxime@outlook.fr>",
   "repository": {
@@ -50,14 +40,15 @@
     "formik",
     "react",
     "bootstrap4",
+    "bootstrap5",
     "bootstrap",
     "reactstrap"
   ],
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "src/components/index.js",
+  "module": "src/components/index.js",
   "files": [
-    "dist",
+    "src/components",
     "README.md"
   ],
   "description": "[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_reactstrap-formik&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mlaplanche_reactstrap-formik) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_reactstrap-formik&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=mlaplanche_reactstrap-formik) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_reactstrap-formik&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=mlaplanche_reactstrap-formik)  [![pipeline status](https://gitlab.com/mlaplanche/reactstrap-formik/badges/master/pipeline.svg)](https://gitlab.com/mlaplanche/reactstrap-formik/-/commits/master)",

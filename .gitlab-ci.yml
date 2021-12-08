@@ -23,9 +23,8 @@ build:
       - "dist/"
   before_script:
     - npm ci --cache .npm
-    - npm run lint
   script:
-    - npm run build
+    - npm run lint
 
 sonarcloud-check:
   stage: quality_gate
