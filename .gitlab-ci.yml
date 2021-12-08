@@ -25,6 +25,8 @@ build:
     - npm ci --cache .npm
   script:
     - npm run lint
+  only:
+    - develop
 
 sonarcloud-check:
   stage: quality_gate
