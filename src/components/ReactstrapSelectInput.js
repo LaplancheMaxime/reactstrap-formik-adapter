@@ -13,8 +13,9 @@ const ReactstrapSelectInput = ({
                                }) => {
     let error = getIn(errors, field.name);
     let touch = getIn(touched, field.name);
+    const row = props.row ? true : false;
     return (
-        <FormGroup>
+        <FormGroup row={row}>
             <Label for={props.inputprops.id} className={"label-color"}>{props.label}</Label>
             <Input id={props.inputprops.id} {...field} {...props} type="select"
                    invalid={Boolean(getIn(touched, field.name) && getIn(errors, field.name))} disabled={disabled}>
@@ -31,11 +32,13 @@ const ReactstrapSelectInput = ({
 };
 
 export default ReactstrapSelectInput;
+
 ReactstrapSelectInput.propTypes = {
     field: PropTypes.any,
     form: PropTypes.any,
     id: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
     inputprops: PropTypes.any,
-    label: PropTypes.string
+    label: PropTypes.string,
+    row: PropTypes.bool,
 }

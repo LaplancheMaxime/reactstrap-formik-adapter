@@ -1,7 +1,9 @@
-stages:          # List of stages for jobs, and their order of execution
+stages: # List of stages for jobs, and their order of execution
+  - prepare          
   - build
   - test
   - quality_gate
+  - tag
   - deploy
 
 # Cache modules in between jobs
@@ -14,8 +16,14 @@ cache:
 build:
   image: node:alpine
   stage: build
+  artifacts:
+    untracked: false
+    expire_in: 30 days
+    paths:
+      - "dist/"
+  before_script:
+    - npm ci --cache .npm
   script:
-    - npm ci
     - npm run lint
 
 sonarcloud-check:
@@ -35,3 +43,44 @@ sonarcloud-check:
   only:
     - merge_requests
     - master
+
+prepare:release:tag:
+  image: node:latest
+  stage: prepare
+  script: 
+    - TAG=$(node -p "require('./package.json').version")
+    - echo "VERSION=${TAG}" > prepare_tag.env
+    - cat prepare_tag.env 
+  artifacts:
+    reports:
+      dotenv: prepare_tag.env
+  only:
+    - master
+
+release:tag:
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  stage: tag
+  needs:
+    - job: prepare:release:tag
+      artifacts: true
+    - job: build
+  script:
+    - echo 'running release:tag FOR ${VERSION}'
+  release:
+    tag_name: ${VERSION}
+    ref: ${CI_COMMIT_SHORT_SHA}
+    description: 'Readme.md'
+  only:
+    - master
+
+publish:package:gitlab:
+  image: node:12
+  stage: deploy
+  before_script:
+    - npm --version
+    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >.npmrc
+    - cat .npmrc
+  script:
+    - npm publish --verbose --access public
+  only:
+    - tags
