@@ -9,10 +9,10 @@ const ReactstrapFormikInput = (
     form: { touched, errors },
     ...props
   }) => {
-    const check = props.check ? true : false;
-    const inline = props.inline ? true : false;
-    const floating = props.floating ? true : false;
-    const row = props.row ? true : false;
+    const check = props.check ? true : undefined;
+    const inline = props.inline ? true : undefined;
+    const floating = props.floating ? true : undefined;
+    const row = props.row ? true : undefined;
     return (
 <FormGroup check={check} inline={inline} floating={floating} row={row}>
     {!props.floating && props.label ? 

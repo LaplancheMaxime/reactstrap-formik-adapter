@@ -12,7 +12,7 @@ const ReactstrapSelectInputRow = ({
                                }) => {
     let error = getIn(errors, field.name);
     let touch = getIn(touched, field.name);
-    const ColInputSize = props.colInputSize ? props.colInputSize : "10";
+    const ColInputSize = props.colinputsize ? props.colinputsize : "10";
     const ColLabelSize = 12 - ColInputSize;
     return (
         <FormGroup row>
@@ -43,5 +43,5 @@ ReactstrapSelectInputRow.propTypes = {
     inputprops: PropTypes.any,
     label: PropTypes.string,
     row: PropTypes.bool,
-    colInputSize: PropTypes.string,
+    colinputsize: PropTypes.string,
 }
