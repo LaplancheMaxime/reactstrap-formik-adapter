@@ -65,7 +65,7 @@ release:tag:
   needs:
     - job: prepare:release:tag
       artifacts: true
-    - job: build
+      
   script:
     - echo 'running release:tag FOR ${VERSION}'
   release:
