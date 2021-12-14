@@ -8,18 +8,63 @@ Bindings for using [Formik](https://github.com/jaredpalmer/formik) with [Reactst
 
 Fork of [reactstrap-formik](https://github.com/shoaibkhan94/reactstrap-formik) by [shoaibkhan94](https://github.com/shoaibkhan94).
 
+Gitlab [project](https://gitlab.com/mlaplanche/reactstrap-formik), do not hesitate to open a issue for help.
+
 ## Getting Started
 
     npm install reactstrap-formik-adapter
     
 ## Usage Examples
-  * Text Input [Example](https://codesandbox.io/s/xl6mx6w8z4)
-  * Select Input [Example](https://codesandbox.io/s/6l3oo28kq3)
-  * Radio Input [Example](https://codesandbox.io/s/0vm7yo754w)    
+  * General example with Formik, Yup and Reactstrap [here](https://codesandbox.io/s/musing-mopsa-gjrjs?file=/src/App.jsx) 
 
-## Development
+## How to
 
-    npm install
-    npm run storybook
+ * To use a simple text field :
 
-[Demo](https://laplanchemaxime.github.io/reactstrap-formik-adapter/)
+```JSX
+import { ReactstrapInput,} from "reactstrap-formik-adapter";
+import { Field } from "formik";
+
+...
+
+  <Field
+    component={ReactstrapInput}
+    label="Lastname"
+    name="Lastname"
+    id="Lastname"
+  />
+```
+You can overload with a type of the types [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input). The Yup library also allows to check the type (as for emails, an example is available on the sandbox).
+
+You can use [flotating label](https://reactstrap.github.io/?path=/docs/components-forms--floating-labels), [form inline](https://reactstrap.github.io/?path=/docs/components-forms--form-inline), [feedback or help text](https://reactstrap.github.io/?path=/docs/components-forms--form-feedback) and  [checkbox](https://reactstrap.github.io/?path=/docs/components-forms--inline-checkboxes).
+
+ * To use select input field : 
+
+ ```JSX
+import { ReactstrapSelect,} from "reactstrap-formik-adapter";
+import { Field } from "formik";
+
+...
+
+<Field
+  component={ReactstrapSelect}
+  label="Civility"
+  name="Civility"
+  id="Civility"
+  inputprops={{
+    name: "Civility",
+    id: "civility",
+    options: [
+      {
+        name: "Mr.",
+        id: "Mr."
+      },
+      {
+        name: "Ms.",
+        id: "Ms."
+      }
+    ]
+  }}
+/>
+```
+You can also use the ReactstrapSelectRow component.

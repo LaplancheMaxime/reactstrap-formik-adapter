@@ -13,7 +13,7 @@ const ReactstrapSelectInput = ({
                                }) => {
     let error = getIn(errors, field.name);
     let touch = getIn(touched, field.name);
-    const row = props.row ? true : false;
+    const row = props.row ? true : undefined;
     return (
         <FormGroup row={row}>
             <Label for={props.inputprops.id} className={"label-color"}>{props.label}</Label>
