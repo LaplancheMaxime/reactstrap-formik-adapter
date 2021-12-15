@@ -1,0 +1,10 @@
+* @mlaplanche
+
+[Components Owners]
+src/components/ @mlaplanche
+
+[Critical files Owners]
+package.json @mlaplanche
+
+[Documentation]
+README.md @mlaplanche
