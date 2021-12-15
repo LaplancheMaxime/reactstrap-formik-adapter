@@ -23,8 +23,9 @@ build:
       - "dist/"
   before_script:
     - npm ci --cache .npm
-  script:
     - npm run lint
+  script:
+    - npm run build
   only:
     - develop
 
