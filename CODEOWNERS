@@ -1,10 +1,10 @@
-* @mlaplanche
+*   @mlaplanche
 
 [Components Owners]
 src/components/ @mlaplanche
 
 [Critical files Owners]
-package.json @mlaplanche
+package.json    @mlaplanche
 
 [Documentation]
-README.md @mlaplanche
+README.md   @mlaplanche

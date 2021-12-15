@@ -29,7 +29,7 @@ build:
     - npm run build
   only:
     - develop
-    - tag
+    - tags
 
 sonarcloud-check:
   stage: quality_gate
