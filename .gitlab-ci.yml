@@ -1,3 +1,4 @@
+---
 stages: # List of stages for jobs, and their order of execution
   - prepare          
   - build
@@ -28,6 +29,7 @@ build:
     - npm run build
   only:
     - develop
+    - tag
 
 sonarcloud-check:
   stage: quality_gate
@@ -66,7 +68,6 @@ release:tag:
   needs:
     - job: prepare:release:tag
       artifacts: true
-      
   script:
     - echo 'running release:tag FOR ${VERSION}'
   release:
@@ -79,6 +80,9 @@ release:tag:
 publish:package:gitlab:
   image: node:12
   stage: deploy
+  needs:
+    - job: build
+      artifacts: true
   before_script:
     - npm --version
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >.npmrc
