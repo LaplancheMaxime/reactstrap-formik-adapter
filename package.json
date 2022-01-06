@@ -8,7 +8,9 @@
     "reactstrap": "^9.0.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.3",
